@@ -50,12 +50,22 @@ GROUP BY
 ORDER BY
     dg."Genre",
     l."Name";`;
-  const result = await query(text);
+  const result = await pool.query(text);
   return result;
 }
 
+const getEventsByLocation = async (location) => {
+  const query = "select * from \"Event\" e\
+  inner join \"Location\" l on e.\"LocationID\" = l.id\
+  where l.\"Name\" = '" + location + "';"  
+  console.log(query);
+  const result = await pool.query(query);
+  return result.rows;
+
+}
 module.exports = {
   query,
   pool,
   bubblechart,
+  getEventsByLocation
 };
