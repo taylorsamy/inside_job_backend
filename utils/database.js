@@ -10,11 +10,15 @@ const pool = new Pool({
 
  const query = async (text) => {
   pool.connect()
-  const result = await pool.query(text)
-  if (result.rows.length > 0) {
-    return result.rows
-  } else {
-    return null
+  try {
+    const result = await pool.query(text)
+    if (result.rows.length > 0) {
+      return result.rows
+    } else {
+      return null
+    }
+  } catch (err) {  
+    return err.stack
   }
 }
 
