@@ -1,16 +1,15 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var client = require('../utils/database');
-require('dotenv').config();
-
+var client = require("../utils/database");
+require("dotenv").config();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send('API is working properly');
+router.get("/", function (req, res, next) {
+  res.send("API is working properly");
 });
 
 // POST sql query to database
-router.post('/db', async function(req, res, next) {
+router.post("/db", async function (req, res, next) {
   // get formdata from request
   var data = req.body;
   console.log(data);
@@ -22,8 +21,6 @@ router.post('/db', async function(req, res, next) {
   } else {
     res.send("No query provided");
   }
-
 });
-
 
 module.exports = router;

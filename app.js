@@ -13,7 +13,7 @@ var apiRouter = require("./routes/api");
 var app = express();
 
 var corsOptions = {
-  origin: "localhost:5173",
+  origin: "*",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
