@@ -28,4 +28,16 @@ router.post("/db", async function (req, res, next) {
 	}
 });
 
+router.post("/bubblechart", async function (req, res, next) {
+  try {
+    // query database
+    var resp = await client.bubblechart();
+    res.send(resp);
+
+  } catch (error) {
+    res.send("Error connecting to database");
+    console.log(error);
+  }
+});
+
 module.exports = router;

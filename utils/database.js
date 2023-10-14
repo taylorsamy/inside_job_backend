@@ -25,7 +25,36 @@ const query = async (text) => {
   }
 };
 
+const bubblechart = async () => {
+  const text = `WITH DistinctGenres AS (
+    SELECT DISTINCT "Genre"
+    FROM "Event"
+)
+
+SELECT
+    dg."Genre",
+    l."Name" AS location_name,
+    COALESCE(SUM(r."Rating"), 0) AS total_ratings_for_location
+FROM
+    DistinctGenres dg
+JOIN
+    "Event" e ON dg."Genre" = e."Genre"
+JOIN
+    "Location" l ON e."LocationID" = l.id
+LEFT JOIN
+    "Rating" r ON e.id = r."EventID"
+GROUP BY
+    dg."Genre",
+    l."Name"
+ORDER BY
+    dg."Genre",
+    l."Name";`;
+  const result = await query(text);
+  return result;
+}
+
 module.exports = {
   query,
   pool,
+  bubblechart,
 };
