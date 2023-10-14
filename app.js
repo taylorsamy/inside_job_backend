@@ -42,7 +42,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-router.get('/', function(req, res, next) {
+app.get('/', function(req, res, next) {
   res.send('Node is working properly');
 });
 
