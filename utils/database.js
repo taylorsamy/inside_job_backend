@@ -13,10 +13,13 @@ const query = async (text) => {
   try {
     const result = await pool.query(text);
     if (result.rows.length > 0) {
+      pool.end();
       return result.rows;
     } else {
+      pool.end();
       return null;
     }
+
   } catch (err) {
     return err.stack;
   }
