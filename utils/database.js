@@ -34,7 +34,8 @@ const bubblechart = async () => {
 SELECT
     dg."Genre",
     l."Name" AS location_name,
-    COALESCE(SUM(r."Rating"), 0) AS total_ratings_for_location
+    DIV(COALESCE(SUM(r."Rating"), 0),5) AS avg_ratings_for_location,
+    count(e.id) AS number_of_events
 FROM
     DistinctGenres dg
 JOIN
