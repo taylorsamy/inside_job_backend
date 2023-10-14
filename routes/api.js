@@ -60,4 +60,24 @@ router.post("/location", async function (req, res, next) {
 
 });
 
+router.post("/genre", async function (req, res, next) {
+  try {
+		// get formdata from request
+		var data = req.body;
+		console.log(data);
+
+		if (data.query) {
+			// query database
+			var resp = await client.getEventsByGenre(data.query);
+			res.send(resp);
+		} else {
+			res.send("No query provided");
+		}
+	} catch (error) {
+		res.send("Error connecting to database");
+		console.log(error);
+	}
+
+});
+
 module.exports = router;

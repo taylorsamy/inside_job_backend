@@ -63,9 +63,19 @@ const getEventsByLocation = async (location) => {
   return result.rows;
 
 }
+
+const getEventsByGenre= async (genre) => {
+  const query = "select * from \"Event\" e\
+  where \"Genre\" = '" + genre + "';"  
+  console.log(query);
+  const result = await pool.query(query);
+  return result.rows;
+
+}
 module.exports = {
   query,
   pool,
   bubblechart,
-  getEventsByLocation
+  getEventsByLocation,
+  getEventsByGenre
 };
