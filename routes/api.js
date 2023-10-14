@@ -6,7 +6,7 @@ require('dotenv').config();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.send('API is working properly');
 });
 
 // POST sql query to database

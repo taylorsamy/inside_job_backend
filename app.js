@@ -42,6 +42,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// start server
+router.get('/', function(req, res, next) {
+  res.send('Node is working properly');
+});
+
 
 module.exports = app;
