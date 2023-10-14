@@ -51,7 +51,7 @@ ORDER BY
     dg."Genre",
     l."Name";`;
   const result = await pool.query(text);
-  return result;
+  return result.rows;
 }
 
 const getEventsByLocation = async (location) => {
